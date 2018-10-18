@@ -17,21 +17,5 @@ namespace Nerdable.DbHelper.Extensions
             return services;
         }
 
-        //public static IServiceCollection AddDbHelper<TDbContext,TProfile>(this IServiceCollection services, System.IServiceProvider provider) where TDbContext : DbContext where TProfile : IContextInjectable<TDbContext>
-        //{
-        //    services.AddScoped<IDbHelper, Services.DbHelper>();
-        //    services.AddScoped<DbContext, TDbContext>();
-        //    services.AddAutoMapper();
-
-        //    var profile = provider.GetService<TProfile>();
-        //    profile.SetContext(provider.GetService<TDbContext>());
-
-        //    //services.AddScoped(provider => new MapperConfiguration(cfg =>
-        //    //{
-        //    //    cfg.AddProfile(new TProfile(provider.GetService<TDbContext>()));
-        //    //}).CreateMapper());
-
-        //    return services;
-        //}
     }
 }
