@@ -370,6 +370,27 @@ namespace Nerdable.DbHelper.Services
             }
         }
 
+        public Response<ICollection<TOutput>> MapToNewObjects<TInput, TOutput>(ICollection<TInput> source) where TOutput : new()
+        {
+            try
+            {
+                var mapped = _mapper.Map<ICollection<TOutput>>(source);
+
+                if (mapped != null)
+                {
+                    return Response<ICollection<TOutput>>.BuildResponse(mapped);
+                }
+                else
+                {
+                    return Response<ICollection<TOutput>>.BuildResponse(new Collection<TOutput>(), false, ReturnCode.MappingFailure, $"Automapper failed to map object of type {typeof(TInput)} to object of type {typeof(TOutput)}");
+                }
+            }
+            catch (Exception e)
+            {
+                return Response<ICollection<TOutput>>.BuildResponse(new Collection<TOutput>(), false, ReturnCode.MappingFailure, $"Automapper threw exception when trying to map object of type {typeof(TInput)} to object of type {typeof(TOutput)}. Exception: {e.StackTrace}");
+            }
+        }
+
         public Response<TOutput> MapToExistingObject<TInput, TOutput>(TInput source, TOutput destination) where TOutput : new()
         {
             try

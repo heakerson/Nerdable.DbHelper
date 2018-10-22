@@ -35,6 +35,7 @@ namespace Nerdable.DbHelper.Services
 
 
         Response<TOutput> MapToNewObject<TInput, TOutput>(TInput toMap) where TOutput : new();
+        Response<ICollection<TOutput>> MapToNewObjects<TInput, TOutput>(ICollection<TInput> source) where TOutput : new();
         Response<TOutput> MapToExistingObject<TInput, TOutput>(TInput source, TOutput destination) where TOutput : new();
 
 
